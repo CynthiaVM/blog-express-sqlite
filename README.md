@@ -55,6 +55,9 @@ npm run dev
 db/dbcontext.ts
 
 14 Abrimos Heidi
-Nuevo, MQlite, en el nombre d ela base traer el archivo blog.db
+Nuevo, SQlite, en el nombre d ela base traer el archivo blog.db
+Probar con postman
+Recargar en Heidi
+
 
 
