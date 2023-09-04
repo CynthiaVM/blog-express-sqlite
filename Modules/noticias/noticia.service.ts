@@ -8,10 +8,10 @@ export const crearNoticia = async (req: Request, res: Response) => {
 		const noticiaRepository = await dbcontext.getRepository(Noticia);
 		const nuevaNoticia: iNoticia = req.body;
 
-		// creamos la noticia sin guardar
+		// creamos la noticia con create, sin guardar
 		const noticia = await noticiaRepository.create(nuevaNoticia);
 
-		// guardamos la noticia
+		// guardamos la noticia, hace el insert en la base de datos
 		const result = await noticiaRepository.save(noticia);
 
 		res.json({
@@ -39,7 +39,7 @@ export const listarNoticia = async (req: Request, res: Response) => {
 export const obtenerNoticiaId = async (req: Request, res: Response) => {
 	try {
 		const noticiaRepository = await dbcontext.getRepository(Noticia);
-		const noticia = await noticiaRepository.findOneBy({ id: req.params.id });
+		const noticia = await noticiaRepository.findOneBy({ id: req.params.id }); //traer todas las noticias
 		if (!noticia) {
 			throw new Error();
 		}
