@@ -12,10 +12,9 @@ npm install express
 
 npm i -D typescript @types/express @types/node
 4 Creamos el archivo tsconfig.conf
-
 npx tsc --init
-5 Creamos el archivo .gitignore
 
+5 Creamos el archivo .gitignore
 node_modules
 dist
 6 Agregamos dos scripts en el archivo package.json
@@ -44,4 +43,18 @@ npm run dev
 "emitDecoratorMetadata": true,   
 "strictPropertyInitialization": false,   Cambiar en false para que me deje crear una clase sin constructor
 
-11 
+11 Creamos la carpeta modules/noticias
+/noticia.entity.ts
+/noticia.routes.ts
+/noticia.service.ts
+/noticia.interface.ts
+
+12 Instalar npm i uuid
+
+13 Creamos dentro de Modules la carpeta db
+db/dbcontext.ts
+
+14 Abrimos Heidi
+Nuevo, MQlite, en el nombre d ela base traer el archivo blog.db
+
+
