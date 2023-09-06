@@ -19,7 +19,7 @@ export const crearNoticia = async (req: Request, res: Response) => {
 		});
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ msg: 'No se pudo guardar la noticia' });
+		res.status(500).json({ msg: 'No se pudo guardar la noticia'});
 	}
 };
 
