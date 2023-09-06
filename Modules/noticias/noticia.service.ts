@@ -67,4 +67,23 @@ export const borrarNoticia = async (req: Request, res: Response) => {
 	}
 };
 
-// update
+// update 
+////siempre lo vamos a ejecutar las funciones dentro de un try y catch para poder ver la captura del error
+export const actualizarNoticia = async(req: Request, res: Response) => {
+	try { 
+		const noticiaRepository = await dbcontext.getRepository(Noticia); //llamamos al repo para poder acceder a la base 
+
+		const idNoticia = req.params.id; //capturamos el id
+		const updateNoticia: iNoticia = req.body; // llamamos al req.body si veo la consulta envio el id y el body veo la noticia a actualizar
+
+		const result = await noticiaRepository.update(idNoticia,updateNoticia);
+		//si result afecto a alguna linea y si no afecto a nada voy a poner un error
+		if (!result.affected) {
+			throw new Error('No se pudo actualizar la noticia');
+		}
+		res.json({ msg: 'Noticia actualizada de manera correcta!' });
+	} catch (error) {
+		console.log(error);
+		res.status(404).json({ msg: 'No se pudo actualizar la noticia!' });
+	}
+};
