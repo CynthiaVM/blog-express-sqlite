@@ -11,6 +11,6 @@ export class Noticia { //propiedad que va a tener la noticia
 	@Column()
 	contenido: string;
 
-    @UpdateDateColumn()
-    update_at: Date;
+    //@UpdateDateColumn()
+    //update_at: Date;
 }
