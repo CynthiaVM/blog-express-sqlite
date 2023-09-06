@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity() //decorador agregando detalles
 export class Noticia { //propiedad que va a tener la noticia
@@ -10,4 +10,7 @@ export class Noticia { //propiedad que va a tener la noticia
 
 	@Column()
 	contenido: string;
+
+    @UpdateDateColumn()
+    update_at: Date;
 }
