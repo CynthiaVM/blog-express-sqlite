@@ -2,6 +2,11 @@ import express, { Express, Request, Response } from "express";
 import bodyParcer from 'body-parser';
 import noticiasRoutes from './Modules/noticias/noticia.routes';
 import { dbcontext } from './Modules/db/dbcontext';
+import comentarioRoutes from './Modules/comentarios/comentario.routes';
+process.env.TZ = 'America/Argentina/Buenos_Aires';
+const time = new Date();
+console.log(time.toLocaleDateString());
+
 
 dbcontext
 	.initialize()
@@ -24,6 +29,8 @@ app.use(bodyParcer.json());
 //});
 
 app.use('/noticia', noticiasRoutes);
+
+app.use('/comentario', comentarioRoutes);
 
 app.listen(3000, () => {
     console.log('Servidor funcionando ok!!!');
