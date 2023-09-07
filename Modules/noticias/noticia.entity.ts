@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+
+import { Comentario } from '../comentarios/comentario.entity';
 
 @Entity() //decorador agregando detalles
 export class Noticia { //propiedad que va a tener la noticia
@@ -11,6 +13,14 @@ export class Noticia { //propiedad que va a tener la noticia
 	@Column()
 	contenido: string;
 
-    //@UpdateDateColumn()
-    //update_at: Date;
+	@CreateDateColumn()
+	create_at: Date;
+
+    @UpdateDateColumn()
+    update_at: Date;
+
+	@OneToMany(() => Comentario, (c) => c.noticia)
+	comentarios: Comentario[];
+//sino lo tengo no podria tener los comentarios 
+
 }
