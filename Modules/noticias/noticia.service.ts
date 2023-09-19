@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
+import {Request, Response } from 'express';
 import { iNoticia } from './noticia.interface';
 import { Noticia } from './noticia.entity';
 import { dbcontext } from '../db/dbcontext';
+import logger from '../logger/logger';
 
 export const crearNoticia = async (req: Request, res: Response) => {
 	try {
@@ -17,8 +18,9 @@ export const crearNoticia = async (req: Request, res: Response) => {
 		res.json({
 			msg: `Se creo la noticia correctamente con el id: ${result.id}`,
 		});
+		logger.debug(`Se creo la noticia ${JSON.stringify(nuevaNoticia)}`);
 	} catch (error) {
-		console.error(error);
+		logger.error(`no se pudo crear la noticia ${error}`);
 		res.status(500).json({ msg: 'No se pudo guardar la noticia'});
 	}
 };
@@ -39,15 +41,22 @@ export const listarNoticia = async (req: Request, res: Response) => {
 export const obtenerNoticiaId = async (req: Request, res: Response) => {
 	try {
 		const noticiaRepository = await dbcontext.getRepository(Noticia);
-		const noticia = await noticiaRepository.findOneBy({ id: req.params.id }); //traer todas las noticias
+		const noticia = await noticiaRepository.findOne({
+			where: { id: req.params.id },
+			relations: ['comentarios'],
+		});
 		if (!noticia) {
 			throw new Error();
 		}
 		res.json({ noticia });
 	} catch (error) {
+		logger.error(
+			`No se puedo obtener la noticia con id ${req.params.id} desde el ip ${req.ip} `
+		);
 		res.status(404).json({ msg: 'No se pudo encontrar la noticia' });
 	}
 };
+
 
 // // eliminar noticia
 export const borrarNoticia = async (req: Request, res: Response) => {
@@ -59,7 +68,7 @@ export const borrarNoticia = async (req: Request, res: Response) => {
 		if (!noticiaBorrar.affected) {
 			throw new Error('no se afectaron columnas');
 		}
-
+		logger.info(`el ip ${req.ip} borro la noticia ${req.params.id}`);
 		res.json({ msg: 'Noticia borrada correctamente.' });
 	} catch (error) {
 		console.error(error);
