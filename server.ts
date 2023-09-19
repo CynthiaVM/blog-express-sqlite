@@ -3,6 +3,8 @@ import bodyParcer from 'body-parser';
 import noticiasRoutes from './Modules/noticias/noticia.routes';
 import { dbcontext } from './Modules/db/dbcontext';
 import comentarioRoutes from './Modules/comentarios/comentario.routes';
+import { logMiddleware } from "./Modules/middleware/logMiddleware";
+import logger from './Modules/logger/logger';
 process.env.TZ = 'America/Argentina/Buenos_Aires';
 const time = new Date();
 console.log(time.toLocaleDateString());
@@ -19,6 +21,8 @@ dbcontext
 
 
 const app: Express = express();
+//mi primer middleware global
+app.use(logMiddleware);
 
 app.use(bodyParcer.json());
 
@@ -33,5 +37,5 @@ app.use('/noticia', noticiasRoutes);
 app.use('/comentario', comentarioRoutes);
 
 app.listen(3000, () => {
-    console.log('Servidor funcionando ok!!!');
+	logger.info('Servidor funcionando OK EN EL PORT ' + 3000);
 });
