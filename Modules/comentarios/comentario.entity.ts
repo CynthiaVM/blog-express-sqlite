@@ -1,4 +1,4 @@
-import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
+import { Column,CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import { Noticia } from '../noticias/noticia.entity';
 
 @Entity() //decorador agregando detalles
