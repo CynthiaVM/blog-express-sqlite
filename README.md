@@ -55,9 +55,24 @@ npm run dev
 db/dbcontext.ts
 
 14 Abrimos Heidi
-Nuevo, SQlite, en el nombre d ela base traer el archivo blog.db
+Nuevo, SQlite, en el nombre d ela base traer el archivo blob
 Probar con postman
 Recargar en Heidi
+
+15 Creamos la carpeta modules/comentarios
+/comentario.entity.ts
+/comentario.routes.ts
+/comentario.service.ts
+/comentario.interface.ts
+
+16 Creamos la carpeta modules/logger
+
+17 Creamos la carpeta modules/middlware
+
+18 Instalar npm install @types/winston --save-dev
+   instalar npm i winston
+
+19   
 
 
 
