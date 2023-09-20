@@ -11,7 +11,7 @@ const logFormat = format.combine(
 );
 //instancia de winston
 const logger = createLogger({
-	level: process.env.BLOG_LOG_LEVEL, // nivel del registro ('debug','info', 'warning', 'error',) ocupan espacio
+	level: process.env.BLOG_LOG_LEVEL, // nivel del registro ('debug' (registra todo!),'info', 'warning', 'error',) ocupan espacio
 	format: logFormat,
 	transports: [
 		new transports.Console(),
