@@ -9,14 +9,12 @@ import { TypeORMError } from 'typeorm';
 import dotenv from 'dotenv';
 import { usuarios } from "./Modules/usuarios/usuarios.entity";
 import { usuarioRoutes } from "./Modules/usuarios/usuarios.routes";
+import { authRoutes } from './Modules/auth/auth.routes';
 process.env.TZ = 'America/Argentina/Buenos_Aires';
 dotenv.config();
 
-
-
 const time = new Date();
 console.log(time.toLocaleDateString());
-
 
 dbcontext
 .initialize()
@@ -24,7 +22,6 @@ dbcontext
 .catch((err: TypeORMError) => {
 	logger.error(`Error al iniciar la base de datos: ${err.message}`); // si hay error
 });
-
 
 const app: Express = express();
 //mi primer middleware global
@@ -45,6 +42,8 @@ app.use('/noticia', noticiasRoutes);
 app.use('/comentario', comentarioRoutes);
 
 app.use('/usuarios', usuarioRoutes);
+
+app.use('/auth', authRoutes);
 
 app.listen(PORT, () => {
 	logger.info('Servidor funcionando OK EN EL PORT ' + PORT);
