@@ -1,5 +1,5 @@
-import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-
+import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, BeforeInsert } from 'typeorm';
+import bcrypt from 'bcrypt';
 import { Noticia } from '../noticias/noticia.entity';
 
 @Entity() //decorador agregando detalles
@@ -25,8 +25,15 @@ export class usuarios { //propiedad que va a tener
     @UpdateDateColumn()
     update_at: Date;
 
+	@BeforeInsert() 
+	async hashPassword() {
+		this.pass = await bcrypt.hash(this.pass, 10);
+	}
+	//al ponerlo aca y no en usuario, siempre lo va a ejecutar
+    
 	//@OneToMany(() => usuario, (c) => c.usuarios)
 	//usuarios: usuario[];
-//sino lo tengo no podria tener los comentarios 
+    //sino lo tengo no podria tener los comentarios 
+
 
 }
