@@ -9,7 +9,7 @@ export const crearUsuario =async (req: Request, res: Response) => {
         const usuarioRepository= dbcontext.getRepository(usuarios);
         let usuarioData: IUsuario= req.body;
 
-        usuarioData.email=usuarioData.email.toLowerCase(); //para pasarlo minus, normalizar.
+        //usuarioData.email=usuarioData.email.toLowerCase(); //para pasarlo minus, normalizar.
         
         const usuario= await usuarioRepository.create(usuarioData);
         const guardarUsuario= await usuarioRepository.save(usuario);
