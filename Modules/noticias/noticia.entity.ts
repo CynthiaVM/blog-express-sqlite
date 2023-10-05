@@ -1,4 +1,4 @@
-import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, ManyToOne } from 'typeorm';
 
 import { Comentario } from '../comentarios/comentario.entity';
 import { usuarios } from '../usuarios/usuarios.entity';
@@ -21,11 +21,9 @@ export class Noticia { //propiedad que va a tener la noticia
     update_at: Date;
 
 	@OneToMany(() => Comentario, (c) => c.noticia)
-	comentarios: Comentario[];
-//sino lo tengo no podria tener los comentarios 
-    
-    //@OneToMany(() => usuario, (c) => c.usuarios)
-	//usuarios: usuario[];
+	comentarios: Comentario[];  //sino lo tengo no podria tener los comentarios 
 
+    @ManyToOne(() => usuarios, (u) => u.noticias, { nullable: false })
+    usuario: usuarios;
 
 }
