@@ -30,16 +30,16 @@ export class usuarios { //propiedad que va a tener
 	async hashPassword() {
 		this.pass = await bcrypt.hash(this.pass, 10)
 	}
+
+    @OneToMany(() => Noticia, (n) => n.usuario)
+	noticias: Noticia[];
+
 	@BeforeInsert()
 	normalizar(){
 		this.email= this.email.toLowerCase();
 	}
 	
-	//al ponerlo aca y no en usuario, siempre lo va a ejecutar
-    
-	//@OneToMany(() => usuario, (c) => c.usuarios)
-	//usuarios: usuario[];
-    //sino lo tengo no podria tener los comentarios 
+	
 
 
 }
