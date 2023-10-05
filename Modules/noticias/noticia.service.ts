@@ -10,15 +10,20 @@ export const crearNoticia = async (req: Request, res: Response) => {
 		const nuevaNoticia: iNoticia = req.body;
 
 		// creamos la noticia con create, sin guardar
-		const noticia = await noticiaRepository.create(nuevaNoticia);
-
+		const noticia = await noticiaRepository.create({
+			...nuevaNoticia,
+			usuario: { id: req.usuario.id },
+		});
+		
 		// guardamos la noticia, hace el insert en la base de datos
 		const result = await noticiaRepository.save(noticia);
 
-		res.json({
-			msg: `Se creo la noticia correctamente con el id: ${result.id}`,
-		});
 		logger.debug(`Se creo la noticia ${JSON.stringify(nuevaNoticia)}`);
+		logger.debug(
+			`El usuario con nombre : ${req.usuario.nombre} ${
+				req.usuario.apellido
+			} creo la noticia ${JSON.stringify(nuevaNoticia)}`
+		);
 	} catch (error) {
 		logger.error(`no se pudo crear la noticia ${error}`);
 		res.status(500).json({ msg: 'No se pudo guardar la noticia'});
