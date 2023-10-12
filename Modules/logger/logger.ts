@@ -15,7 +15,10 @@ const logger = createLogger({
 	format: logFormat,
 	transports: [
 		new transports.Console(),
-		new transports.File({ filename: 'app.log' }),
+		new transports.File({ format: logFormat,
+			filename: 'app.log',
+			maxFiles: 2,
+			maxsize: 1024, }),
 	], // el transports es donde quiero que lo registre
 });
 
