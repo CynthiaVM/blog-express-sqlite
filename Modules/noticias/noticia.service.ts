@@ -15,14 +15,14 @@ export const crearNoticia = async (req: Request, res: Response) => {
 			usuario: { id: req.usuario.id },
 		});
 		
-		// guardamos la noticia, hace el insert en la base de datos
-		const result = await noticiaRepository.save(noticia);
+	// guardamos la noticia, hace el insert en la base de datos
+const result = await noticiaRepository.save(noticia);
 
-		logger.debug(`Se creo la noticia ${JSON.stringify(nuevaNoticia)}`);
-		logger.debug(
-			`El usuario con nombre : ${req.usuario.nombre} ${
-				req.usuario.apellido
-			} creo la noticia ${JSON.stringify(nuevaNoticia)}`
+	logger.debug(`Se creo la noticia ${JSON.stringify(nuevaNoticia)}`);
+	logger.debug(
+		`El usuario con nombre : ${req.usuario.nombre} ${
+			req.usuario.apellido
+		} creo la noticia ${JSON.stringify(nuevaNoticia)}`
 		);
 	} catch (error) {
 		logger.error(`no se pudo crear la noticia ${error}`);
@@ -40,7 +40,7 @@ export const listarNoticia = async (req: Request, res: Response) => {
 		console.log(error);
 		res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
 	}
-};
+}
 
 // // obtener noticia por id
 export const obtenerNoticiaId = async (req: Request, res: Response) => {
@@ -99,5 +99,24 @@ export const actualizarNoticia = async(req: Request, res: Response) => {
 	} catch (error) {
 		console.log(error);
 		res.status(404).json({ msg: 'No se pudo actualizar la noticia!' });
+	}
+
+};
+
+//Lista de noticias del usuario 
+export const listarNoticiaByUsuario = async (req: Request, res: Response) => {
+	try {
+		const noticiaRepository = await dbcontext.getRepository(Noticia);
+		const noticias = await noticiaRepository.find({ //en la documentacion dice la forma que debe ser el find
+			where: { usuario: { id: req.usuario.id } }, //el user id deben ser igual con el que esta logueado, de esta forma lo puede buscar con el ID
+			order: {
+				create_at: 'DESC', //la manera que me lo acomoda
+			},
+		});
+
+		res.json({ data: noticias, cantidad: noticias.length });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
 	}
 };
