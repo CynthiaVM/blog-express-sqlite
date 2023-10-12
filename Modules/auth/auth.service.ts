@@ -29,6 +29,7 @@ export const login = async (req: Request, res: Response) => {
 		);
 		
 		if (!compararPass) {
+			logger.debug(compararPass);
 			throw new Error('Usuario/contraseña incorrecto');
 		}
 
