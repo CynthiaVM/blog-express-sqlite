@@ -1,0 +1,5 @@
+2023-10-11 22:24:28 [debug]: {"usuario":{"id":"Si","email":"simon@gmail.com","nombre":"simon","apellido":"puu"},"iat":1697073736,"exp":1697080936}
+2023-10-11 22:30:37 [debug]: El ip ::1 ingrea a /noticia/my [GET]
+2023-10-11 22:30:37 [error]: No se puedo obtener la noticia con id my desde el ip ::1 
+2023-10-11 22:30:44 [debug]: El ip ::1 ingrea a /noticia/my/all [GET]
+2023-10-11 22:30:44 [debug]: {"usuario":{"id":"Si","email":"simon@gmail.com","nombre":"simon","apellido":"puu"},"iat":1697073736,"exp":1697080936}
