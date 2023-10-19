@@ -1,7 +1,6 @@
 import express from 'express';
 import {
 	crearNoticia,
-	listarNoticia,
 	obtenerNoticiaId,
 	borrarNoticia,
 	actualizarNoticia,
@@ -16,7 +15,7 @@ noticiasRoutes.post('/',verifyTokenMiddleware, crearNoticia);
 
 // endpoint para consultar todas las noticias
 
-noticiasRoutes.get('/', listarNoticia);
+//noticiasRoutes.get('/', listarNoticia);
 
 // // [GET] endpoint obtener noticia por id /:id
 
