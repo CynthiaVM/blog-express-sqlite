@@ -3,6 +3,7 @@ import { iNoticia } from './noticia.interface';
 import { Noticia } from './noticia.entity';
 import { dbcontext } from '../db/dbcontext';
 import logger from '../logger/logger';
+import { ILike } from 'typeorm';
 
 export const crearNoticia = async (req: Request, res: Response) => {
 	try {
@@ -30,25 +31,30 @@ const result = await noticiaRepository.save(noticia);
 	}
 };
 
-export const listarNoticia = async (req: Request, res: Response) => {
-	try {
-		const noticiaRepository = await dbcontext.getRepository(Noticia);
-		const noticias = await noticiaRepository.find();
+//export const listarNoticia = async (req: Request, res: Response) => {
+	//try {
+		//const noticiaRepository = await dbcontext.getRepository(Noticia);
+		//const noticias = await noticiaRepository.find();
 
-		res.json({ data: noticias, cantidad: noticias.length });
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
-	}
-}
+		//res.json({ data: noticias, cantidad: noticias.length });
+	//} catch (error) {
+		//console.log(error);
+		//res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
+	//}
+//}
 
 // // obtener noticia por id
 export const obtenerNoticiaId = async (req: Request, res: Response) => {
 	try {
+		const titulo = req.query.titulo?.toString();
+		const contenido = req.query.contenido?.toString();
+		const idNoticia = req.query.id?.toString();
 		const noticiaRepository = await dbcontext.getRepository(Noticia);
-		const noticia = await noticiaRepository.findOne({
-			where: { id: req.params.id },
-			relations: ['comentarios'],
+		logger.debug(idNoticia);
+		const noticia = await noticiaRepository.findBy({
+			titulo: ILike(`%${titulo || ''}%`),
+			contenido: ILike(`%${contenido || ''}%`),
+			id: idNoticia,
 		});
 		if (!noticia) {
 			throw new Error();
