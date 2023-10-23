@@ -1,0 +1,3 @@
+2023-10-23 16:00:07 [error]: jwt expired
+2023-10-23 16:00:16 [debug]: El ip ::1 ingrea a /usuarios [POST]
+2023-10-23 16:00:16 [error]: Fallo crear el usuario QueryFailedError: ER_TRUNCATED_WRONG_VALUE: Incorrect uuid value: 'Nm' for column `blog`.`usuarios`.`id` at row 1
