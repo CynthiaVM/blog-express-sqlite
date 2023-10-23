@@ -1,4 +1,0 @@
-2023-10-23 16:37:07 [info]: Servidor funcionando OK EN EL PORT 2000
-2023-10-23 16:37:07 [error]: Error al iniciar la base de datos: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
-2023-10-23 16:38:16 [info]: Servidor funcionando OK EN EL PORT 2000
-2023-10-23 16:38:16 [error]: Error al iniciar la base de datos: connect ECONNREFUSED 127.0.0.1:3307
