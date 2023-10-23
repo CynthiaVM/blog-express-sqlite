@@ -1,10 +1,13 @@
 import { DataSource } from 'typeorm';
 
 export const dbcontext = new DataSource({
-	type: 'sqlite',
-	logging: false,
+	type: 'mariadb',
+	host: '127.0.0.1',
+	port: 3307,
+	username: 'root',
+	password: '123456',
+	database: 'blog',
+	logging: true,
 	synchronize: true,
-	database: './blog.db',
 	entities: [__dirname + '/../**/*.entity.{js,ts}'],
-	 //el .entity lo reconosco como una entidad. Lo lee y lo representa en la base de datos
 });
