@@ -126,3 +126,4 @@ export const listarNoticiaByUsuario = async (req: Request, res: Response) => {
 		res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
 	}
 };
+// Busqueda con like por titulo
