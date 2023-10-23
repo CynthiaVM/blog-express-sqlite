@@ -4,7 +4,7 @@ services:
     image: mariadb:latest
     container_name: blog-db
     environment:
-      MARAIADB_ROOT_PASSWORD: 123456
+      MARIADB_ROOT_PASSWORD: 123456
       MARIADB_DATABASE: blog
       TZ: America/Argentina/Buenos_Aires
     ports:
