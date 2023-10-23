@@ -1,13 +1,4 @@
-2023-10-18 21:42:25 [debug]: El ip ::1 ingrea a /auth/login [POST]
-2023-10-18 21:42:53 [debug]: El ip ::1 ingrea a /noticia/my/all [GET]
-2023-10-18 21:42:53 [debug]: {"usuario":{"id":"JP","email":"pablo@gmail.com","nombre":"Pablo","apellido":"Damonte"},"iat":1697676145,"exp":1697683345}
-2023-10-18 21:43:17 [info]: Servidor funcionando OK EN EL PORT 2000
-2023-10-18 21:43:53 [debug]: El ip ::1 ingrea a /auth/login [POST]
-2023-10-18 21:44:16 [debug]: El ip ::1 ingrea a /noticia/my/all [GET]
-2023-10-18 21:44:16 [debug]: {"usuario":{"id":"JP","email":"pablo@gmail.com","nombre":"Pablo","apellido":"Damonte"},"iat":1697676233,"exp":1697683433}
-2023-10-18 21:45:40 [debug]: El ip ::1 ingrea a /noticia/my/all [GET]
-2023-10-18 21:49:12 [debug]: El ip ::1 ingrea a /Auth/login [POST]
-2023-10-18 21:51:33 [debug]: El ip ::1 ingrea a /my/all [GET]
-2023-10-18 21:52:22 [debug]: El ip ::1 ingrea a /my/all [GET]
-2023-10-18 21:54:35 [debug]: El ip ::1 ingrea a /noticia/my/all [GET]
-2023-10-18 21:54:35 [debug]: {"usuario":{"id":"Nm","email":"nuriel@gmail.com","nombre":"Nuriel","apellido":"Mouzo"},"iat":1697676552,"exp":1697683752}
+2023-10-23 16:37:07 [info]: Servidor funcionando OK EN EL PORT 2000
+2023-10-23 16:37:07 [error]: Error al iniciar la base de datos: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+2023-10-23 16:38:16 [info]: Servidor funcionando OK EN EL PORT 2000
+2023-10-23 16:38:16 [error]: Error al iniciar la base de datos: connect ECONNREFUSED 127.0.0.1:3307
