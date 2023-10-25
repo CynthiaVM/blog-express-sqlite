@@ -1,10 +1,10 @@
 import express from 'express';
 import {
 	crearNoticia,
-	obtenerNoticiaId,
 	borrarNoticia,
 	actualizarNoticia,
 	listarNoticiaByUsuario,
+	obtenerNoticia,
 } from './noticia.service';
 import { verifyTokenMiddleware } from '../auth/auth.middleware';
 
@@ -19,7 +19,7 @@ noticiasRoutes.post('/',verifyTokenMiddleware, crearNoticia);
 
 // // [GET] endpoint obtener noticia por id /:id
 
-noticiasRoutes.get('/:id', obtenerNoticiaId);
+noticiasRoutes.get('/', obtenerNoticia);
 
 // [GET] endpoint para obtener noticias del usuario logueado
 noticiasRoutes.get('/my/all', verifyTokenMiddleware, listarNoticiaByUsuario);
