@@ -1,4 +1,11 @@
-import { Column,CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, BeforeInsert } from 'typeorm';
+import { Column,
+	CreateDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn, 
+	OneToMany,
+	BeforeInsert
+	 } from 'typeorm';
 import bcrypt from 'bcrypt';
 import { Noticia } from '../noticias/noticia.entity';
 import { before } from 'node:test';
@@ -8,38 +15,31 @@ export class usuarios { //propiedad que va a tener
 	@PrimaryGeneratedColumn('uuid') //dice que sera una primarykey (identificador unico)
 	id?: string; //el signo de pregunta es por que puede o no venir
 
-	@Column({unique:true}) //unico
+	@Column({ unique: true }) //unico
 	email: string;
 
 	@Column()
 	pass: string;
 
-    @Column()
+	@Column()
 	nombre: string;
 
-    @Column()
+	@Column()
 	apellido: string;
 
 	@CreateDateColumn()
 	create_at: Date;
 
-    @UpdateDateColumn()
-    update_at: Date;
+	@UpdateDateColumn()
+	updated_at: Date;
 
-	@BeforeInsert() 
-	async hashPassword() {
-		this.pass = await bcrypt.hash(this.pass, 10)
-	}
-
-    @OneToMany(() => Noticia, (n) => n.usuario)
+	@OneToMany(() => Noticia, (n) => n.usuario)
 	noticias: Noticia[];
 
 	@BeforeInsert()
-	normalizar(){
-		this.email= this.email.toLowerCase();
+	async hashPassword() {
+		this.pass = await bcrypt.hash(this.pass, 10);
 	}
 	
-	
-
 
 }
