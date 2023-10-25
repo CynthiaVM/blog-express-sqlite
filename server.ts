@@ -46,5 +46,5 @@ app.use('/usuarios', usuarioRoutes);
 app.use('/auth', authRoutes);
 
 app.listen(PORT, () => {
-	logger.info('Servidor funcionando OK EN EL PORT ' + PORT);
+	logger.info('Servidor funcionando OK EN EL PORT 🦄❤️  ' + PORT);
 });
