@@ -1,4 +1,6 @@
-import { createLogger, format, transports } from 'winston';
+import { createLogger, 
+	format, 
+	transports } from 'winston';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -8,6 +10,13 @@ const logFormat = format.combine(
 	format.printf(({ timestamp, level, message }) => {
 		return `${timestamp} [${level}]: ${message}`;
 	}) //configuracion del formato del blog 
+);
+const logFormatConsole = format.combine(
+	format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
+	format.colorize(),
+	format.printf(({ timestamp, level, message }) => {
+		return `[${timestamp}][${level}]: ${message}`;
+	})
 );
 //instancia de winston
 const logger = createLogger({
