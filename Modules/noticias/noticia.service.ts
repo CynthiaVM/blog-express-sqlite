@@ -44,13 +44,13 @@ const result = await noticiaRepository.save(noticia);
 //}
 
 // // obtener noticia por id
-export const obtenerNoticiaId = async (req: Request, res: Response) => {
+export const obtenerNoticia = async (req: Request, res: Response) => {
 	try {
 		const titulo = req.query.titulo?.toString();
 		const contenido = req.query.contenido?.toString();
 		const idNoticia = req.query.id?.toString();
 		const noticiaRepository = await dbcontext.getRepository(Noticia);
-		logger.debug(idNoticia);
+		// Busqueda con like por titulo
 		const noticia = await noticiaRepository.find({
 			where: {
 				titulo: ILike(`%${titulo || ''}%`),
@@ -131,4 +131,3 @@ export const listarNoticiaByUsuario = async (req: Request, res: Response) => {
 		res.status(500).json({ msg: 'No se pudo obtener un listado de noticias' });
 	}
 };
-// Busqueda con like por titulo
